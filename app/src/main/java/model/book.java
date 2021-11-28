@@ -11,8 +11,9 @@ public class book {
     private float price;
     private String description;
     private int quantity;
+    private String imageUrl;
 
-    public book(int id, String title, String author, ArrayList<String> genre, String year, float price, String description, int quantity) {
+    public book(int id, String title, String author, ArrayList<String> genre, String year, float price, String description, int quantity,String imageUrl) {
         this.id = id;
         this.title = title;
         this.author = author;
@@ -21,9 +22,10 @@ public class book {
         this.price = price;
         this.description = description;
         this.quantity = quantity;
+        this.imageUrl = imageUrl;
     }
 
-    public book(String title, String author, ArrayList<String> genre, String year, float price, String description, int quantity) {
+    public book(String title, String author, ArrayList<String> genre, String year, float price, String description, int quantity,String imageUrl) {
         this.title = title;
         this.author = author;
         this.genre = genre;
@@ -31,6 +33,7 @@ public class book {
         this.price = price;
         this.description = description;
         this.quantity = quantity;
+        this.imageUrl = imageUrl;
     }
 
     public int getId() {
@@ -95,5 +98,13 @@ public class book {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

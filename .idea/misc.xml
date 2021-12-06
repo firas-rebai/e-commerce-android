@@ -4,13 +4,16 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/firas/AndroidStudioProjects/Projetmobile/app/src/main/res/layout/activity_login.xml" value="0.33" />
-        <entry key="..\:/Users/firas/AndroidStudioProjects/Projetmobile/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/firas/AndroidStudioProjects/Projetmobile/app/src/main/res/layout/header.xml" value="0.22" />
         <entry key="..\:/Users/firas/AndroidStudioProjects/Projetmobile/app/src/main/res/layout/layout_login.xml" value="0.2726449275362319" />
         <entry key="..\:/Users/firas/AndroidStudioProjects/Projetmobile/app/src/main/res/layout/layout_register.xml" value="0.2726449275362319" />
-        <entry key="..\:/Users/firas/AndroidStudioProjects/Projetmobile/app/src/main/res/layout/main_menu.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/firas/AndroidStudioProjects/Projetmobile/app/src/main/res/layout/toolbar.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/firas/AndroidStudioProjects/Projetmobile/app/src/main/res/menu/main_menu.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/yoss/AndroidStudioProjects/e-commerce-android/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2546875" />
+        <entry key="..\:/Users/yoss/AndroidStudioProjects/e-commerce-android/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2546875" />
+        <entry key="..\:/Users/yoss/AndroidStudioProjects/e-commerce-android/app/src/main/res/drawable/login_button_bk.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/yoss/AndroidStudioProjects/e-commerce-android/app/src/main/res/layout/activity_login.xml" value="0.2" />
+        <entry key="..\:/Users/yoss/AndroidStudioProjects/e-commerce-android/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Users/yoss/AndroidStudioProjects/e-commerce-android/app/src/main/res/layout/layout_login.xml" value="0.13020833333333334" />
+        <entry key="..\:/Users/yoss/AndroidStudioProjects/e-commerce-android/app/src/main/res/layout/layout_register.xml" value="0.1" />
+        <entry key="..\:/Users/yoss/AndroidStudioProjects/e-commerce-android/app/src/main/res/layout/register.xml" value="0.4" />
       </map>
     </option>
   </component>

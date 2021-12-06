@@ -23,10 +23,10 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) { switch (v.getId()){
-            case R.id.register:
-                startActivity(new Intent(this,register.getClass()));
-                break;
-        }
-        }
-
+        case R.id.register:
+            startActivity(new Intent(getApplicationContext(),register.class));
+            break;
     }
+    }
+
+}

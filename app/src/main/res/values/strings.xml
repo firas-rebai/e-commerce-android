@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Projet mobile</string>
+    <string name="signup">Do you have an account?</string>
+
 </resources>

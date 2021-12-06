@@ -12,11 +12,7 @@
         <activity
             android:name="com.example.controller.Login"
             android:exported="false" />
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        
         <activity
             android:name="com.example.controller.MainActivity"
             android:exported="true">

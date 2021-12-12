@@ -1,19 +1,21 @@
 package model;
 
-import java.util.ArrayList;
+
 
 public class book {
     private int id;
     private String title;
     private String author;
-    private ArrayList<String> genre;
+    private String genre;
     private String year;
     private float price;
     private String description;
     private int quantity;
-    private String imageUrl;
 
-    public book(int id, String title, String author, ArrayList<String> genre, String year, float price, String description, int quantity,String imageUrl) {
+    public book() {
+    }
+
+    public book(int id, String title, String author, String genre, String year, float price, String description, int quantity) {
         this.id = id;
         this.title = title;
         this.author = author;
@@ -22,10 +24,9 @@ public class book {
         this.price = price;
         this.description = description;
         this.quantity = quantity;
-        this.imageUrl = imageUrl;
     }
 
-    public book(String title, String author, ArrayList<String> genre, String year, float price, String description, int quantity,String imageUrl) {
+    public book(String title, String author, String genre, String year, float price, String description, int quantity) {
         this.title = title;
         this.author = author;
         this.genre = genre;
@@ -33,7 +34,6 @@ public class book {
         this.price = price;
         this.description = description;
         this.quantity = quantity;
-        this.imageUrl = imageUrl;
     }
 
     public int getId() {
@@ -60,11 +60,11 @@ public class book {
         this.author = author;
     }
 
-    public ArrayList<String> getGenre() {
+    public String getGenre() {
         return genre;
     }
 
-    public void setGenre(ArrayList<String> genre) {
+    public void setGenre(String genre) {
         this.genre = genre;
     }
 
@@ -98,13 +98,5 @@ public class book {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
-    }
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
     }
 }

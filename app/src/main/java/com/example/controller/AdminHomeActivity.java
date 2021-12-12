@@ -7,6 +7,8 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import model.current;
+
 public class AdminHomeActivity extends AppCompatActivity {
 
     private Button btn_logout, btn_viewCommand , btn_add_category;
@@ -25,6 +27,7 @@ public class AdminHomeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(AdminHomeActivity.this, MainActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                current.currentUser = null;
                 startActivity(intent);
                 finish();
             }
@@ -38,13 +41,13 @@ public class AdminHomeActivity extends AppCompatActivity {
 //            }
 //        });
 
-//        btn_add_category.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(AdminHomeActivity.this,AdminCategoryActivity.class);
-//                startActivity(intent);
-//            }
-//        });
+        btn_add_category.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AdminHomeActivity.this, AddNewBookActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 }

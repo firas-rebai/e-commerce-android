@@ -16,15 +16,18 @@
         app:menu="@menu/main_menu"
         android:layout_gravity="start">
     </com.google.android.material.navigation.NavigationView>
-    <ScrollView
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainer"
+        android:name="com.example.controller.MainMenuFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    </ScrollView>
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-        <include
-            layout="@layout/toolbar"/>
+        <include layout="@layout/toolbar"></include>
     </RelativeLayout>
+
 
 </androidx.drawerlayout.widget.DrawerLayout>

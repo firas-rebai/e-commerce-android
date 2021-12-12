@@ -10,10 +10,13 @@
         android:id="@+id/btn_add_product"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
         android:text="Ajouter un produit"
-        android:textSize="20dp"
-        android:textAllCaps="false"/>
+        android:textAllCaps="false"
+        android:textSize="20dp" />
 
 
     <Button
@@ -21,10 +24,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/btn_add_product"
-        android:layout_margin="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
         android:text="Liste des commandes"
-        android:textSize="18dp"
-        android:textAllCaps="false"/>
+        android:textAllCaps="false"
+        android:textSize="18dp" />
 
     <Button
         android:id="@+id/btn_logout_admin"

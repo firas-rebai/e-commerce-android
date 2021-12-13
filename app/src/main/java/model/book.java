@@ -1,8 +1,9 @@
 package model;
 
 
+import java.io.Serializable;
 
-public class book {
+public class book implements Serializable {
     private int id;
     private String title;
     private String author;

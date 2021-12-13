@@ -55,20 +55,20 @@ public class RegisterActivity extends AppCompatActivity {
 
         if (TextUtils.isEmpty(name))
         {
-            Toast.makeText(this, "Saisissez votre nom SVP...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "enter your username please", Toast.LENGTH_SHORT).show();
         }
         else if (TextUtils.isEmpty(email))
         {
-            Toast.makeText(this, "Saisissez votre email SVP...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "enter your email please", Toast.LENGTH_SHORT).show();
         }
         else if (TextUtils.isEmpty(password))
         {
-            Toast.makeText(this, "Saisissez votre password SVP...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "enter your password please", Toast.LENGTH_SHORT).show();
         }
         else
         {
-            loadingBar.setTitle("Création du compte");
-            loadingBar.setMessage("Veuiller patienter SVP");
+            loadingBar.setTitle("Creating an account");
+            loadingBar.setMessage("Please wait!");
             loadingBar.setCanceledOnTouchOutside(false);
             loadingBar.show();
 
@@ -87,14 +87,14 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
             {
-                if (!(dataSnapshot.child("Users").child(email).exists()))
+                if (!(dataSnapshot.child("Users").child(name).exists()))
                 {
                     HashMap<String, Object> userdataMap = new HashMap<>();
                     userdataMap.put("email", email);
                     userdataMap.put("password", password);
-                    userdataMap.put("name", name);
+                    userdataMap.put("username", name);
 
-                    RootRef.child("Users").child(email).updateChildren(userdataMap)
+                    RootRef.child("Users").child(name).updateChildren(userdataMap)
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task)

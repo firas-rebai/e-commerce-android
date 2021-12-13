@@ -7,10 +7,8 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -111,23 +109,21 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.child(username).exists()) {
-//                    String usernameDB = dataSnapshot.child(username).child("username").getValue().toString();
-//                    String passwordDB = dataSnapshot.child(username).child("password").getValue().toString();
                     user userDate = dataSnapshot.child(username).getValue(user.class);
                     if (userDate.getUsername().equals(username)) {
                         if (userDate.getPassword().equals(password)) {
-                            if (parentDbName.equals("Admins")){
+                            if (parentDbName.equals("Admins")) {
                                 Toast.makeText(LoginActivity.this, "Hello " + userDate.getUsername(), Toast.LENGTH_SHORT).show();
                                 loadingBar.dismiss();
                                 Intent intent = new Intent(LoginActivity.this, AdminHomeActivity.class);
                                 current.currentUser = userDate;
                                 current.isAdmin = true;
                                 startActivity(intent);
-                            }else if (parentDbName.equals("Users")){
+                            } else if (parentDbName.equals("Users")) {
                                 Toast.makeText(LoginActivity.this, "Hello " + userDate.getUsername(), Toast.LENGTH_SHORT).show();
                                 loadingBar.dismiss();
                                 current.currentUser = userDate;
-                                Intent intent = new Intent(LoginActivity.this, UserHomeActivity.class);
+                                Intent intent = new Intent(LoginActivity.this, HomeBooksActivity.class);
                                 startActivity(intent);
                             }
                         }

@@ -10,6 +10,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -17,12 +19,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import model.book;
 import model.current;
 
 public class BookDetailsActivity extends AppCompatActivity {
     TextView title, price, description, year, genre, author;
     Button deleteButton,updateButton,addToCart;
-
+    model.book book;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +39,8 @@ public class BookDetailsActivity extends AppCompatActivity {
         deleteButton = findViewById(R.id.delete_button_details);
         updateButton = findViewById(R.id.update_button_details);
         addToCart = findViewById(R.id.add_cart_details);
+
+
         Bundle extras = getIntent().getExtras();
 
         if(!current.isAdmin){
@@ -44,26 +49,45 @@ public class BookDetailsActivity extends AppCompatActivity {
         }
 
 
-
         if (extras != null) {
-            title.setText(extras.getString("title"));
-            description.setText(extras.getString("description"));
-            year.setText(extras.getString("year"));
-            price.setText(extras.getString("price"));
-            author.setText(extras.getString("author"));
-            genre.setText(extras.getString("genre"));
+            book = (model.book) extras.getSerializable("book");
+            title.setText(book.getTitle());
+            description.setText(book.getDescription());
+            year.setText(book.getYear());
+            price.setText(String.valueOf(book.getPrice()));
+            author.setText(book.getAuthor());
+            genre.setText(book.getAuthor());
+
         }
         addToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(BookDetailsActivity.this,current.currentUser.getUsername(),Toast.LENGTH_LONG).show();
+                final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Users");
+                databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        databaseReference.child("orders").child(book.getTitle()).setValue(book).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()){
+                                    Toast.makeText(BookDetailsActivity.this,"book added to your cart",Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
             }
         });
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-                Query applesQuery = ref.child("books").orderByChild("title").equalTo(extras.getString("title"));
+                Query applesQuery = ref.child("books").orderByChild("title").equalTo(book.getTitle());
 
                 applesQuery.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override

@@ -1,9 +1,11 @@
 package com.example.controller;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,9 +17,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import model.current;
+
 public class BookDetailsActivity extends AppCompatActivity {
     TextView title, price, description, year, genre, author;
-    Button deleteButton;
+    Button deleteButton,updateButton,addToCart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +34,17 @@ public class BookDetailsActivity extends AppCompatActivity {
         genre = findViewById(R.id.genre_details);
         author = findViewById(R.id.author_details);
         deleteButton = findViewById(R.id.delete_button_details);
+        updateButton = findViewById(R.id.update_button_details);
+        addToCart = findViewById(R.id.add_cart_details);
         Bundle extras = getIntent().getExtras();
+
+        if(!current.isAdmin){
+            deleteButton.setEnabled(false);
+            updateButton.setEnabled(false);
+        }
+
+
+
         if (extras != null) {
             title.setText(extras.getString("title"));
             description.setText(extras.getString("description"));
@@ -39,6 +53,12 @@ public class BookDetailsActivity extends AppCompatActivity {
             author.setText(extras.getString("author"));
             genre.setText(extras.getString("genre"));
         }
+        addToCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(BookDetailsActivity.this,current.currentUser.getUsername(),Toast.LENGTH_LONG).show();
+            }
+        });
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,6 +80,19 @@ public class BookDetailsActivity extends AppCompatActivity {
 
 
                 });
+            }
+        });
+        updateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(BookDetailsActivity.this, UpdateBookActivity.class);
+                intent.putExtra("title",title.getText());
+                intent.putExtra("price",price.getText());
+                intent.putExtra("description",description.getText());
+                intent.putExtra("author",author.getText());
+                intent.putExtra("genre",genre.getText());
+                intent.putExtra("year",year.getText());
+                startActivity(intent);
             }
         });
 

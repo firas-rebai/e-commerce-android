@@ -101,7 +101,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 {
                                     if (task.isSuccessful())
                                     {
-                                        Toast.makeText(RegisterActivity.this, "Compte créer avec succés.", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(RegisterActivity.this, "Account created", Toast.LENGTH_SHORT).show();
                                         loadingBar.dismiss();
 
                                         Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
@@ -110,16 +110,16 @@ public class RegisterActivity extends AppCompatActivity {
                                     else
                                     {
                                         loadingBar.dismiss();
-                                        Toast.makeText(RegisterActivity.this, "Erreur de connéxion", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(RegisterActivity.this, "Error", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             });
                 }
                 else
                 {
-                    Toast.makeText(RegisterActivity.this, "Ce compte existe déja", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "Account already exists", Toast.LENGTH_SHORT).show();
                     loadingBar.dismiss();
-                    Toast.makeText(RegisterActivity.this, "Veuiller choisir un autre numéro SVP", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "Choose another email", Toast.LENGTH_SHORT).show();
 
                     Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
                     startActivity(intent);

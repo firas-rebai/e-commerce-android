@@ -25,7 +25,7 @@ import java.util.Arrays;
 import model.book;
 
 public class AddNewBookActivity extends AppCompatActivity {
-    EditText year,author,titre,description,quantity,price,genre;
+    EditText year,author,title,description,quantity,price,genre;
     Button add_book_btn;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -34,11 +34,12 @@ public class AddNewBookActivity extends AppCompatActivity {
 
         year = findViewById(R.id.book_year);
         author = findViewById(R.id.book_author);
-        titre = findViewById(R.id.book_name);
+        title = findViewById(R.id.book_name);
         description = findViewById(R.id.book_description);
         quantity = findViewById(R.id.book_quantity);
         price = findViewById(R.id.book_price);
         genre = findViewById(R.id.book_genre);
+
         add_book_btn = findViewById(R.id.add_new_book);
         add_book_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,12 +56,19 @@ public class AddNewBookActivity extends AppCompatActivity {
         DBref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                book book = new book(titre.getText().toString(),author.getText().toString(),genre.getText().toString(),year.getText().toString(),Float.parseFloat(price.getText().toString()),description.getText().toString(),Integer.parseInt(quantity.getText().toString()));
+                book book = new book(title.getText().toString(),author.getText().toString(),genre.getText().toString(),year.getText().toString(),Float.parseFloat(price.getText().toString()),description.getText().toString(),Integer.parseInt(quantity.getText().toString()));
                 DBref.child("books").child(book.getTitle()).setValue(book).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()){
                             Toast.makeText(AddNewBookActivity.this,"book added",Toast.LENGTH_LONG).show();
+                            year.setText("");
+                            title.setText("");
+                            description.setText("");
+                            price.setText("");
+                            quantity.setText("");
+                            author.setText("");
+                            genre.setText("");
                         }
                     }
                 });
@@ -71,6 +79,9 @@ public class AddNewBookActivity extends AppCompatActivity {
 
             }
         });
+
+
+
 
     }
 }

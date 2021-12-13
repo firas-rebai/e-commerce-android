@@ -87,40 +87,43 @@ public class LoginActivity extends AppCompatActivity {
 
 
     private void loginUser() {
-        String phone = InputPhoneNumber.getText().toString();
+        String username = InputPhoneNumber.getText().toString();
         String password = InputPassword.getText().toString();
 
-        if (TextUtils.isEmpty(phone)) {
-            Toast.makeText(this, "Votre numéro SVP...", Toast.LENGTH_SHORT).show();
+        if (TextUtils.isEmpty(username)) {
+            Toast.makeText(this, "Insert your username", Toast.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(password)) {
-            Toast.makeText(this, "Votre mot de passe SVP...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Insert your password", Toast.LENGTH_SHORT).show();
         } else {
             loadingBar.setTitle("Connexion");
             loadingBar.setMessage("Veuiller patienté SVP");
             loadingBar.setCanceledOnTouchOutside(false);
             loadingBar.show();
-            allowAccessToAccount(phone, password);
+            allowAccessToAccount(username, password);
         }
     }
 
-    private void allowAccessToAccount(final String email, final String password) {
+    private void allowAccessToAccount(final String username, final String password) {
         final DatabaseReference databaseReference;
-        databaseReference = FirebaseDatabase.getInstance().getReference();
+        databaseReference = FirebaseDatabase.getInstance().getReference(parentDbName);
 
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.child(parentDbName).child(email).exists()) {
-                    user userDate = dataSnapshot.child(parentDbName).child(email).getValue(user.class);
-                    if (userDate.getEmail().equals(email)) {
+                if (dataSnapshot.child(username).exists()) {
+//                    String usernameDB = dataSnapshot.child(username).child("username").getValue().toString();
+//                    String passwordDB = dataSnapshot.child(username).child("password").getValue().toString();
+                    user userDate = dataSnapshot.child(username).getValue(user.class);
+                    if (userDate.getUsername().equals(username)) {
                         if (userDate.getPassword().equals(password)) {
-                            if (parentDbName == "Admins"){
+                            if (parentDbName.equals("Admins")){
                                 Toast.makeText(LoginActivity.this, "Hello " + userDate.getUsername(), Toast.LENGTH_SHORT).show();
                                 loadingBar.dismiss();
                                 Intent intent = new Intent(LoginActivity.this, AdminHomeActivity.class);
                                 current.currentUser = userDate;
+                                current.isAdmin = true;
                                 startActivity(intent);
-                            }else if (parentDbName == "Users"){
+                            }else if (parentDbName.equals("Users")){
                                 Toast.makeText(LoginActivity.this, "Hello " + userDate.getUsername(), Toast.LENGTH_SHORT).show();
                                 loadingBar.dismiss();
                                 current.currentUser = userDate;
@@ -130,7 +133,7 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     }
                 } else {
-                    Toast.makeText(LoginActivity.this, "Ce compte n'éxiste pas", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Account does not exist", Toast.LENGTH_SHORT).show();
                     loadingBar.dismiss();
                 }
             }

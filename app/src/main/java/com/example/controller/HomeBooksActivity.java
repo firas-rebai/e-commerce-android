@@ -1,13 +1,13 @@
 package com.example.controller;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.annotation.SuppressLint;
-import android.content.Intent;
-import android.os.Bundle;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -25,11 +25,30 @@ public class HomeBooksActivity extends AppCompatActivity implements AdapterBookC
     DatabaseReference databaseReference;
     ArrayList<book> bookArrayList;
 
+
     @SuppressLint("NotifyDataSetChanged")
     @Override
     protected void onResume() {
         super.onResume();
+        bookArrayList.clear();
         adapter.notifyDataSetChanged();
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    book book = dataSnapshot.getValue(book.class);
+                    bookArrayList.add(book);
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
     }
 
     @Override
@@ -41,9 +60,9 @@ public class HomeBooksActivity extends AppCompatActivity implements AdapterBookC
         recyclerView = findViewById(R.id.book_recyclerview);
         databaseReference = FirebaseDatabase.getInstance().getReference("books");
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         bookArrayList = new ArrayList<>();
-        adapter = new AdapterBookCard(this,bookArrayList);
+        adapter = new AdapterBookCard(this, bookArrayList);
 
         recyclerView.setAdapter(adapter);
         adapter.setOnClick(HomeBooksActivity.this);
@@ -52,7 +71,7 @@ public class HomeBooksActivity extends AppCompatActivity implements AdapterBookC
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot dataSnapshot:snapshot.getChildren()){
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     book book = dataSnapshot.getValue(book.class);
                     bookArrayList.add(book);
                 }
@@ -70,12 +89,12 @@ public class HomeBooksActivity extends AppCompatActivity implements AdapterBookC
     @Override
     public void onItemClick(int clickedItemIndex) {
         Intent intent = new Intent(HomeBooksActivity.this, BookDetailsActivity.class);
-        intent.putExtra("title",bookArrayList.get(clickedItemIndex).getTitle());
-        intent.putExtra("price",bookArrayList.get(clickedItemIndex).getPrice());
-        intent.putExtra("description",bookArrayList.get(clickedItemIndex).getDescription());
-        intent.putExtra("author",bookArrayList.get(clickedItemIndex).getAuthor());
-        intent.putExtra("genre",bookArrayList.get(clickedItemIndex).getGenre());
-        intent.putExtra("year",bookArrayList.get(clickedItemIndex).getYear());
+        intent.putExtra("title", bookArrayList.get(clickedItemIndex).getTitle());
+        intent.putExtra("price", bookArrayList.get(clickedItemIndex).getPrice());
+        intent.putExtra("description", bookArrayList.get(clickedItemIndex).getDescription());
+        intent.putExtra("author", bookArrayList.get(clickedItemIndex).getAuthor());
+        intent.putExtra("genre", bookArrayList.get(clickedItemIndex).getGenre());
+        intent.putExtra("year", bookArrayList.get(clickedItemIndex).getYear());
         startActivity(intent);
     }
 }

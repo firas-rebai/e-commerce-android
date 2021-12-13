@@ -11,6 +11,14 @@ public class user {
     //private boolean isAdmin;
     private ArrayList<bookOrder> books;
 
+    public user() {
+    }
+
+    public user(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
     public int getId() {
         return id;
     }

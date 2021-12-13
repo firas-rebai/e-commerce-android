@@ -66,7 +66,7 @@ public class BookDetailsActivity extends AppCompatActivity {
                 databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        databaseReference.child("orders").child(book.getTitle()).setValue(book).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        databaseReference.child(current.currentUser.getUsername()).child("orders").child(book.getTitle()).setValue(book).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()){
@@ -95,6 +95,8 @@ public class BookDetailsActivity extends AppCompatActivity {
                         for (DataSnapshot appleSnapshot: dataSnapshot.getChildren()) {
                             appleSnapshot.getRef().removeValue();
                         }
+                        Intent intent = new Intent(BookDetailsActivity.this, HomeBooksActivity.class);
+                        startActivity(intent);
                     }
 
                     @Override

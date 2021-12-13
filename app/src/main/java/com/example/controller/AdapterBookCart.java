@@ -30,7 +30,7 @@ public class AdapterBookCart extends RecyclerView.Adapter<AdapterBookCart.CartVi
     @NonNull
     @Override
     public AdapterBookCart.CartViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.book_cardview, parent, false);
+        View v = LayoutInflater.from(context).inflate(R.layout.cart_bookview, parent, false);
         return new AdapterBookCart.CartViewHolder(v);
     }
 
@@ -63,9 +63,9 @@ public class AdapterBookCart extends RecyclerView.Adapter<AdapterBookCart.CartVi
 
         public CartViewHolder(@NonNull View itemView) {
             super(itemView);
-            background = itemView.findViewById(R.id.background_color);
-            title = itemView.findViewById(R.id.book_title);
-            price = itemView.findViewById(R.id.bookcard_price);
+            background = itemView.findViewById(R.id.cart_background);
+            title = itemView.findViewById(R.id.cart_title);
+            price = itemView.findViewById(R.id.cart_price);
         }
 
         @Override

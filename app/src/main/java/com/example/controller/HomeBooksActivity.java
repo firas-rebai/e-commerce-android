@@ -3,12 +3,14 @@ package com.example.controller;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,7 +26,7 @@ public class HomeBooksActivity extends AppCompatActivity implements AdapterBookC
     AdapterBookCard adapter;
     DatabaseReference databaseReference;
     ArrayList<book> bookArrayList;
-
+    BottomNavigationView bottomNavigationView;
 
     @SuppressLint("NotifyDataSetChanged")
     @Override
@@ -67,13 +69,31 @@ public class HomeBooksActivity extends AppCompatActivity implements AdapterBookC
         recyclerView.setAdapter(adapter);
         adapter.setOnClick(HomeBooksActivity.this);
 
+        bottomNavigationView = findViewById(R.id.bottom_navigator);
+        bottomNavigationView.setSelectedItemId(R.id.home);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.cart:
+                        startActivity(new Intent(HomeBooksActivity.this, CartActitvity.class));
+                        break;
+                    case R.id.profile:
+                        startActivity(new Intent(HomeBooksActivity.this, ProfileActivity.class));
+                        break;
+
+                }
+                return false;
+            }
+        });
+
     }
 
 
     @Override
     public void onItemClick(int clickedItemIndex) {
         Intent intent = new Intent(HomeBooksActivity.this, BookDetailsActivity.class);
-        intent.putExtra("book",bookArrayList.get(clickedItemIndex));
+        intent.putExtra("book", bookArrayList.get(clickedItemIndex));
         startActivity(intent);
     }
 }

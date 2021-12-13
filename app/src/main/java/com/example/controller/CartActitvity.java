@@ -3,7 +3,9 @@ package com.example.controller;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +13,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,22 +32,15 @@ public class CartActitvity extends AppCompatActivity implements AdapterBookCart.
     private AdapterBookCart adapter;
     private ArrayList<book> bookArrayList;
     DatabaseReference databaseReference;
+    BottomNavigationView bottomNavigationView;
+    TextView totalPrice;
+    float total;
 
+    @SuppressLint("NotifyDataSetChanged")
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cart_actitvity);
-
-        recyclerView = findViewById(R.id.book_recyclerview);
-        databaseReference = FirebaseDatabase.getInstance().getReference("Users");
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        bookArrayList = new ArrayList<>();
-        adapter = new AdapterBookCart(this, bookArrayList);
-
-        recyclerView.setAdapter(adapter);
-        adapter.setOnClick(CartActitvity.this);
-
+    protected void onResume() {
+        bookArrayList.clear();
+        adapter.notifyDataSetChanged();
         databaseReference.addValueEventListener(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
@@ -52,7 +48,9 @@ public class CartActitvity extends AppCompatActivity implements AdapterBookCart.
                 for (DataSnapshot dataSnapshot : snapshot.child(current.currentUser.getUsername()).child("orders").getChildren()) {
                     book book = dataSnapshot.getValue(book.class);
                     bookArrayList.add(book);
+                    total += book.getPrice();
                 }
+                totalPrice.setText(String.valueOf(total));
                 adapter.notifyDataSetChanged();
             }
 
@@ -61,6 +59,47 @@ public class CartActitvity extends AppCompatActivity implements AdapterBookCart.
 
             }
         });
+        super.onResume();
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_cart_actitvity);
+
+        recyclerView = findViewById(R.id.cart_recyclerview);
+        totalPrice = findViewById(R.id.price_total_textview);
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("Users");
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        bookArrayList = new ArrayList<>();
+        adapter = new AdapterBookCart(this, bookArrayList);
+
+        recyclerView.setAdapter(adapter);
+        adapter.setOnClick(CartActitvity.this);
+
+        bottomNavigationView = findViewById(R.id.bottom_navigator);
+        bottomNavigationView.setSelectedItemId(R.id.cart);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.home:
+                        startActivity(new Intent(CartActitvity.this, HomeBooksActivity.class));
+                        break;
+                    case R.id.profile:
+                        startActivity(new Intent(CartActitvity.this, ProfileActivity.class));
+                        break;
+
+                }
+                return false;
+            }
+        });
+
+
+
+
 
 
         ItemTouchHelper.SimpleCallback itemTouchHelper = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {

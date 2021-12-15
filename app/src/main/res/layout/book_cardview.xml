@@ -3,7 +3,7 @@
     android:layout_width="280dp"
     android:layout_height="200dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="20dp"
+    app:cardCornerRadius="40dp"
     android:layout_margin="10dp"
     android:id="@+id/phone_Cardview"
     app:cardElevation="6dp">
@@ -12,15 +12,15 @@
         android:id="@+id/background_color"
         android:layout_width="280dp"
         android:layout_height="match_parent"
-        android:background="@color/beige"
+        android:background="#C8C6C6"
         android:padding="5dp">
 
 
         <ImageView
-            android:id="@+id/phone_image"
+            android:id="@+id/book_image"
             android:layout_width="141dp"
-            android:src="@drawable/book"
-            android:layout_height="252dp" />
+            android:layout_height="252dp"
+            android:src="@drawable/book" />
 
         <TextView
             android:id="@+id/book_title"
@@ -29,8 +29,8 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="-6dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="109dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="130dp"
             android:text="Samsung"
             android:textSize="25sp" />
 
@@ -41,8 +41,8 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="-6dp"
-            android:layout_marginEnd="66dp"
-            android:layout_marginBottom="38dp"
+            android:layout_marginEnd="68dp"
+            android:layout_marginBottom="103dp"
             android:text="12354$"
             android:textSize="16sp" />
 

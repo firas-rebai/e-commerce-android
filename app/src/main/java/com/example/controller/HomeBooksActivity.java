@@ -16,6 +16,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
 
 import java.util.ArrayList;
 
@@ -34,6 +35,8 @@ public class HomeBooksActivity extends AppCompatActivity implements AdapterBookC
         super.onResume();
         bookArrayList.clear();
         adapter.notifyDataSetChanged();
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        
         databaseReference.addValueEventListener(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
@@ -77,10 +80,10 @@ public class HomeBooksActivity extends AppCompatActivity implements AdapterBookC
                 switch (item.getItemId()) {
                     case R.id.cart:
                         startActivity(new Intent(HomeBooksActivity.this, CartActitvity.class));
-                        break;
+                        return true;
                     case R.id.profile:
                         startActivity(new Intent(HomeBooksActivity.this, ProfileActivity.class));
-                        break;
+                        return true;
 
                 }
                 return false;

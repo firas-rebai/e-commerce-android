@@ -97,9 +97,9 @@ public class RegisterActivity extends AppCompatActivity {
                     RootRef.child("Users").child(name).updateChildren(userdataMap)
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
-                                public void onComplete(@NonNull Task<Void> task)
-                                {
-                                    if (task.isSuccessful())
+                                    public void onComplete(@NonNull Task<Void> task)
+                                    {
+                                        if (task.isSuccessful())
                                     {
                                         Toast.makeText(RegisterActivity.this, "Account created", Toast.LENGTH_SHORT).show();
                                         loadingBar.dismiss();
@@ -121,8 +121,6 @@ public class RegisterActivity extends AppCompatActivity {
                     loadingBar.dismiss();
                     Toast.makeText(RegisterActivity.this, "Choose another email", Toast.LENGTH_SHORT).show();
 
-                    Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
-                    startActivity(intent);
                 }
             }
 

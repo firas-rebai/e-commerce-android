@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -60,12 +61,13 @@ public class AdapterBookCard extends RecyclerView.Adapter<AdapterBookCard.BookVi
     public static class BookViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView title, price;
         RelativeLayout background;
-
+        ImageView image;
         public BookViewHolder(@NonNull View itemView) {
             super(itemView);
             background = itemView.findViewById(R.id.background_color);
             title = itemView.findViewById(R.id.book_title);
             price = itemView.findViewById(R.id.bookcard_price);
+            image = itemView.findViewById(R.id.book_image);
         }
 
         @Override

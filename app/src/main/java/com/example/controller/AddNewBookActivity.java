@@ -1,6 +1,8 @@
 package com.example.controller;
 
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -26,12 +28,13 @@ import model.book;
 
 public class AddNewBookActivity extends AppCompatActivity {
     EditText year,author,title,description,quantity,price,genre;
-    Button add_book_btn;
+    Button add_book_btn,choose_image;
+    private Uri imageUri;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.admin_add_product);
-
+        choose_image = findViewById(R.id.choose_image_button);
         year = findViewById(R.id.book_year);
         author = findViewById(R.id.book_author);
         title = findViewById(R.id.book_name);
@@ -48,6 +51,21 @@ public class AddNewBookActivity extends AppCompatActivity {
             }
         });
 
+        choose_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(intent,1);
+            }
+        });
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     private void add_book() {

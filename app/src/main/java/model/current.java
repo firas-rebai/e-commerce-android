@@ -2,5 +2,5 @@ package model;
 
 public class current {
     public static user currentUser;
-    public static boolean isAdmin;
+    public static boolean isAdmin= false;
 }

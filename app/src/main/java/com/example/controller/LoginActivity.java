@@ -48,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
         forgetPwd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(LoginActivity.this, "Bientot disponible", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, "coming soon...", Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -3,7 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/firas/AndroidStudioProjects/Projetmobile/app/src/main/res/drawable/home.xml" value="0.3828125" />
+        <entry key="..\:/Users/firas/AndroidStudioProjects/Projetmobile/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3828125" />
         <entry key="..\:/Users/firas/AndroidStudioProjects/Projetmobile/app/src/main/res/drawable/nav_icon.xml" value="0.221875" />
+        <entry key="..\:/Users/firas/AndroidStudioProjects/Projetmobile/app/src/main/res/drawable/profile.xml" value="0.3828125" />
         <entry key="..\:/Users/firas/AndroidStudioProjects/Projetmobile/app/src/main/res/drawable/selector.xml" value="0.221875" />
         <entry key="..\:/Users/firas/AndroidStudioProjects/Projetmobile/app/src/main/res/layout/activity_admin_home.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/firas/AndroidStudioProjects/Projetmobile/app/src/main/res/layout/activity_book_details.xml" value="0.36666666666666664" />
@@ -14,7 +17,7 @@
         <entry key="..\:/Users/firas/AndroidStudioProjects/Projetmobile/app/src/main/res/layout/activity_home_drawer.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/firas/AndroidStudioProjects/Projetmobile/app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="..\:/Users/firas/AndroidStudioProjects/Projetmobile/app/src/main/res/layout/activity_main.xml" value="0.33" />
-        <entry key="..\:/Users/firas/AndroidStudioProjects/Projetmobile/app/src/main/res/layout/activity_profile.xml" value="0.20572916666666666" />
+        <entry key="..\:/Users/firas/AndroidStudioProjects/Projetmobile/app/src/main/res/layout/activity_profile.xml" value="0.33" />
         <entry key="..\:/Users/firas/AndroidStudioProjects/Projetmobile/app/src/main/res/layout/activity_update_book.xml" value="0.34517766497461927" />
         <entry key="..\:/Users/firas/AndroidStudioProjects/Projetmobile/app/src/main/res/layout/activity_user_home.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/firas/AndroidStudioProjects/Projetmobile/app/src/main/res/layout/admin_add_product.xml" value="0.36666666666666664" />
@@ -30,6 +33,7 @@
         <entry key="..\:/Users/firas/AndroidStudioProjects/Projetmobile/app/src/main/res/layout/toolbar.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/firas/AndroidStudioProjects/Projetmobile/app/src/main/res/menu/main_menu.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/firas/AndroidStudioProjects/Projetmobile/app/src/main/res/menu/menu.xml" value="0.20572916666666666" />
+        <entry key="..\:/Users/firas/AndroidStudioProjects/Projetmobile/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.3828125" />
       </map>
     </option>
   </component>

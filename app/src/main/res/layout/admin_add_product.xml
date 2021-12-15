@@ -131,6 +131,12 @@
 
 
         <Button
+            android:id="@+id/choose_image_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Choose file" />
+
+        <Button
             android:id="@+id/add_new_book"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
